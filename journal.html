@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal — 空飛ぶ羊 | SORATOBU HITSUJI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--text:#1A1A1A;--text-l:#6B6B6B;--accent:#8B7355;--accent-l:#C4AD8F;--cream:#F5F0E8;--wg:#E8E4DE;--dark:#2C2C2C;--white:#FFF;--fd:'Cormorant Garamond',serif;--fj:'Zen Kaku Gothic New',sans-serif;--fe:'DM Sans',sans-serif;--ease:cubic-bezier(.16,1,.3,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--fj);font-weight:300;background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:1400px;margin:0 auto;padding:0 clamp(20px,4vw,60px)}
+.sl{font-family:var(--fe);font-size:11px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.ph{width:100%;height:100%;background:var(--wg);display:flex;align-items:center;justify-content:center;font-family:var(--fe);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,0,0,.18)}
+
+header{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.72);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.hi{display:flex;align-items:center;justify-content:space-between;padding:8px clamp(20px,4vw,60px);max-width:1400px;margin:0 auto}
+.logo{font-family:var(--fd);font-size:clamp(18px,2.2vw,24px);font-weight:400;letter-spacing:.08em;text-transform:uppercase}
+.logo span{display:block;font-family:var(--fj);font-size:9px;font-weight:300;letter-spacing:.2em;color:var(--text-l);margin-top:1px}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-family:var(--fe);font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;opacity:.6;transition:opacity .3s;position:relative;padding:2px 0}
+nav a:hover,nav a.active{opacity:1}
+nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--text);transition:width .4s var(--ease)}
+nav a:hover::after,nav a.active::after{width:100%}
+.ni{display:flex;gap:14px;align-items:center}
+.ni a svg{width:16px;height:16px;opacity:.45;transition:opacity .3s}
+.ni a:hover svg{opacity:1}
+.hb{display:none;cursor:pointer;flex-direction:column;gap:5px}
+.hb span{display:block;width:20px;height:1px;background:var(--text)}
+
+/* PAGE HERO */
+.page-hero{padding:clamp(100px,14vw,160px) 0 clamp(40px,5vw,60px);text-align:center}
+.page-hero h1{font-family:var(--fd);font-size:clamp(42px,7vw,72px);font-weight:300;line-height:1.1;margin-bottom:12px}
+.page-hero p{font-size:14px;color:var(--text-l);max-width:500px;margin:0 auto;line-height:1.9}
+
+/* FEATURED ARTICLE */
+.featured-article{padding:0 0 clamp(60px,8vw,100px)}
+.fa-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(32px,5vw,60px);align-items:center}
+.fa-img{aspect-ratio:16/10;background:var(--wg);overflow:hidden;cursor:pointer}
+.fa-img .ph{transition:transform .6s var(--ease)}
+.fa-img:hover .ph{transform:scale(1.03)}
+.fa-tag{font-family:var(--fe);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.fa-title{font-family:var(--fd);font-size:clamp(24px,3vw,36px);font-weight:300;line-height:1.3;margin-bottom:16px}
+.fa-excerpt{font-size:14px;color:var(--text-l);line-height:2;margin-bottom:20px}
+.fa-meta{font-family:var(--fe);font-size:11px;color:var(--text-l);letter-spacing:.08em}
+.tl{font-family:var(--fe);font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;border-bottom:1px solid var(--text);padding-bottom:3px;transition:gap .3s var(--ease);margin-top:16px}
+.tl:hover{gap:16px}
+
+/* ARTICLES GRID */
+.articles{padding:clamp(60px,8vw,100px) 0;background:var(--cream)}
+.articles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:48px}
+.article-card{cursor:pointer;display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:center;padding:28px;background:var(--bg);border:1px solid rgba(0,0,0,.04);transition:all .4s var(--ease)}
+.article-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.05)}
+.ac-img{aspect-ratio:4/3;background:var(--wg);overflow:hidden}
+.ac-img .ph{transition:transform .6s var(--ease)}
+.article-card:hover .ac-img .ph{transform:scale(1.04)}
+.ac-body .fa-tag{margin-bottom:8px}
+.ac-body h3{font-size:16px;font-weight:400;line-height:1.5;margin-bottom:10px}
+.ac-body p{font-size:12px;color:var(--text-l);line-height:1.8;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ac-body .fa-meta{margin-top:12px}
+
+footer{background:var(--dark);color:rgba(255,255,255,.6);padding:clamp(44px,6vw,72px) 0 28px}
+.fi{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px}
+.fb .logo{color:#fff;margin-bottom:10px}
+.fb p{font-size:11px;line-height:1.8;max-width:280px}
+.fc h4{font-family:var(--fe);font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#fff;margin-bottom:14px}
+.fc a{display:block;font-size:11px;padding:4px 0;transition:color .3s}
+.fc a:hover{color:#fff}
+.fbot{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid rgba(255,255,255,.07)}
+.fbot p{font-family:var(--fe);font-size:10px;color:rgba(255,255,255,.3)}
+.fs{display:flex;gap:16px}
+.fs a{font-family:var(--fe);font-size:10px;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
+.fs a:hover{color:#fff}
+
+@media(max-width:768px){
+  nav{display:none}.hb{display:flex}
+  .fa-grid{grid-template-columns:1fr}
+  .articles-grid{grid-template-columns:1fr}
+  .article-card{grid-template-columns:120px 1fr;gap:16px;padding:16px}
+  .ac-img{aspect-ratio:1/1}
+  .fi{grid-template-columns:1fr 1fr 1fr;gap:20px}.fb{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hi">
+    <div class="hb"><span></span><span></span><span></span></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collection.html">Collection</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About</a>
+      <a href="journal.html" class="active">Journal</a>
+    </nav>
+    <a href="index.html" class="logo">Soratobu Hitsuji<span>空飛ぶ羊</span></a>
+    <div class="ni">
+      <a href="https://www.instagram.com/soratobuhitsuji55/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://page.line.me/859namrz" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 5.82 2 10.5c0 3.21 2.61 6 6.5 7.21L8 22l3.5-2.78c.16.01.33.01.5.01 5.52 0 10-3.82 10-8.5S17.52 2 12 2z"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="sl">Journal</div>
+    <h1>Care & Tips</h1>
+    <p>「空飛ぶ羊」の天然素材アイテムを、より長く心地よくお使いいただくためのお手入れとQ&A。</p>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured-article">
+  <div class="container">
+    <a href="https://soratobu.base.shop/blog/2021/01/14/133231" target="_blank">
+      <div class="fa-grid">
+        <div class="fa-img"><div class="ph">記事サムネイル画像</div></div>
+        <div>
+          <div class="fa-tag">Material Guide</div>
+          <h2 class="fa-title">結局、どの素材が一番あたたかい？</h2>
+          <p class="fa-excerpt">みなさんがいちばん気になる「結局どれがいちばんあたたかい？」という問題。高級なカシミヤが一番で、ヤクはその次——そのようなイメージを持つ方も多いかもしれません。ウール・らくだ・ヤク・カシミヤ、それぞれの特性と選び方をご紹介します。</p>
+          <div class="fa-meta">2026.02.10</div>
+          <div class="tl">Read Article <span>→</span></div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ALL ARTICLES -->
+<section class="articles">
+  <div class="container">
+    <div style="text-align:center"><div class="sl">All Articles</div><h2 style="font-family:var(--fj);font-weight:300;font-size:clamp(20px,2.5vw,28px)">お手入れとQ&A</h2></div>
+    <div class="articles-grid">
+
+      <a href="https://soratobu.base.shop/blog/2021/01/14/215822" target="_blank" class="article-card">
+        <div class="ac-img"><div class="ph">記事画像</div></div>
+        <div class="ac-body">
+          <div class="fa-tag">Care Guide</div>
+          <h3>自宅で洗えますか？お手入れ方法は？</h3>
+          <p>「空飛ぶ羊」の商品はすべてご自宅でお洗濯可能です。中性洗剤・ネット入れ・水・弱流コースで洗えます。天然毛100%素材の正しいお手入れ方法をご紹介。</p>
+          <div class="fa-meta">2026.02.10</div>
+        </div>
+      </a>
+
+      <a href="https://soratobu.base.shop/blog/2021/03/27/110759" target="_blank" class="article-card">
+        <div class="ac-img"><div class="ph">記事画像</div></div>
+        <div class="ac-body">
+          <div class="fa-tag">Before & After</div>
+          <h3>洗ってみました、ビフォーアフター｜スリッパ</h3>
+          <p>隠れたロングセラー、フェルト刺子スリッパの洗い方。本体はモンゴル産の羊毛フェルト100％、底は丈夫な山羊革。まるでじゅうたんのような安心感とタフさの秘密。</p>
+          <div class="fa-meta">2026.02.10</div>
+        </div>
+      </a>
+
+      <a href="https://soratobu.base.shop/blog/2022/09/08/100254" target="_blank" class="article-card">
+        <div class="ac-img"><div class="ph">記事画像</div></div>
+        <div class="ac-body">
+          <div class="fa-tag">Service</div>
+          <h3>ラッピング（プレゼント包装）をしてくれますか？</h3>
+          <p>簡易ラッピングを無料で承っております。リピーターさんが多く、はじめはPOPUPイベントやプレゼントで偶然出会い、その後ご自身やご家族の分も——という嬉しいお声。</p>
+          <div class="fa-meta">2026.02.10</div>
+        </div>
+      </a>
+
+      <a href="https://soratobu.base.shop/blog/2021/01/14/152855" target="_blank" class="article-card">
+        <div class="ac-img"><div class="ph">記事画像</div></div>
+        <div class="ac-body">
+          <div class="fa-tag">Repair</div>
+          <h3>穴があいたときはどうする？ダーニングとは？</h3>
+          <p>毛製品は強い力が加わると傷みやすくなります。特にカシミヤやヤクなどの繊細な素材は要注意。ダーニング補修で繕いながら末永くご愛用いただく方法をお伝えします。</p>
+          <div class="fa-meta">2026.02.10</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="fi">
+      <div class="fb"><div class="logo">Soratobu Hitsuji<span style="color:rgba(255,255,255,.3)">空飛ぶ羊</span></div><p>モンゴルの大自然の恵みから生まれた、無染色・天然素材100%のあたたかなアイテム。</p></div>
+      <div class="fc"><h4>Shop</h4><a href="https://soratobu.base.shop/" target="_blank">BASE Webshop</a><a href="https://www.rakuten.co.jp/soratobuhitsuji/" target="_blank">楽天市場店</a><a href="index.html#store">実店舗 KURA</a></div>
+      <div class="fc"><h4>Brand</h4><a href="about.html">About Us</a><a href="journal.html">Journal</a><a href="#">Events</a></div>
+      <div class="fc"><h4>Connect</h4><a href="https://www.instagram.com/soratobuhitsuji55/" target="_blank">Instagram</a><a href="https://page.line.me/859namrz" target="_blank">LINE</a><a href="/cdn-cgi/l/email-protection#c3b0acb1a2b7aca1b6abaab7b0b6a9aaf6f683a4aea2aaafeda0acae">Email</a></div>
+    </div>
+    <div class="fbot"><p>&copy; 2026 空飛ぶ羊&reg; SORATOBU HITSUJI. All rights reserved.</p><div class="fs"><a href="https://www.instagram.com/soratobuhitsuji55/" target="_blank">Instagram</a><a href="https://page.line.me/859namrz" target="_blank">LINE</a
